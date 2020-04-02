@@ -72,23 +72,30 @@ class Db {
         console.log('initialize models');
         // this.cars = sequelize.import('./cars');
         // this.reservation = sequelize.import('./reservation')
-        this.user = sequelize.import('./user')
-        this.access_tokens = sequelize.import('./access_token')
-        this.category = sequelize.import('./category')
-        this.product = sequelize.import('./product')
-        this.cart = sequelize.import('./cart')
-        this.banner = sequelize.import('./banner')
-        this.cartItem = sequelize.import('./cart_item')
+        this.model = sequelize.import('./model')
+        this.plane = sequelize.import('./plane')
+        this.plane_test = sequelize.import('./plane_test')
+        this.technician = sequelize.import('./technician')
+        this.tech_model = sequelize.import('./tech_model')
+        this.test = sequelize.import('./test')
 
         // this.cars.belongsTo(this.user, { as: 'user', foreignKey: 'userId' })
         // this.user.hasMany(this.cars, { as: 'cars', foreignKey: 'userId' })
 
-        this.cart.hasMany(this.cartItem, { as: 'cartItem', foreignKey: 'cartId'})
-        this.cartItem.belongsTo(this.cart, { as: 'cart', foreignKey: 'cartId' })
-      
-        this.cartItem.belongsTo(this.product, { as: 'product', foreignKey: 'productId' })
+        this.plane.hasMany(this.plane_test, { as: 'plane_test', foreignKey: 'registrationNo'})
+        this.plane_test.belongsTo(this.plane, { as: 'plane', foreignKey: 'registrationNo' })
 
-        this.product.belongsTo(this.category, { as: 'category', foreignKey: 'categoryId' })
+        this.test.hasMany(this.plane_test, { as: 'plane_test', foreignKey: 'faaNo'})
+        this.plane_test.belongsTo(this.test, { as: 'test', foreignKey: 'faaNo'})
+
+        this.technician.hasMany(this.tech_model, { as: 'tech_model', foreignKey: 'techId'})
+        this.tech_model.belongsTo(this.technician, { as: 'technician', foreignKey: 'techId'})
+
+        this.model.hasMany(this.tech_model, { as: 'tech_model', foreignKey: 'modelNo'})
+        this.tech_model.belongsTo(this.model, { as: 'model', foreignKey: 'modelNo'})
+      
+        this.model.hasMany(this.plane, { as: 'plane', foreignKey: 'modelNo'})
+        this.plane.belongsTo(this.model, { as: 'model', foreignKey: 'modelNo'})
 
 
     }

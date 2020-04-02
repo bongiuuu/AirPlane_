@@ -8,23 +8,15 @@ class CategorySchema {
                 primaryKey: true,
                 autoIncrement: true
             },
-            nameVn: {
+            techId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                field: 'tech_id'
+            },
+            modelNo: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                field: 'name_vn'
-            },
-            nameEn: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                field: 'name_en'
-            },
-            slugVn: {
-                type: DataTypes.STRING,
-                field: 'slug_vn'
-            },
-            slugEn: {
-                type: DataTypes.STRING,
-                field: 'slug_en'
+                field: 'model_no'
             },
             priority: {
                 defaultValue: 1,

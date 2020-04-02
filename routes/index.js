@@ -1,9 +1,7 @@
-const carsRouter = require('./cars');
-const userRouter = require('./user');
-const loginRouter = require('./auth');
-const cartRouter = require('./cart');
-const productRouter = require('./product');
-const categoryRouter = require('./category');
+const modelRouter = require('./model');
+const planeRouter = require('./plane');
+const technicianRouter = require('./technician');
+const testRouter = require('./test');
 const config = require('config');
 const apiRoutes = require('express').Router();
 
@@ -15,12 +13,10 @@ class RouterIndex {
 
     registerRoutes() {
         this.app.use(config.router_root, apiRoutes)
-        apiRoutes.use('/cars', carsRouter)
-        apiRoutes.use('/user', userRouter)
-        apiRoutes.use('/auth', loginRouter)
-        apiRoutes.use('/cart', cartRouter)
-        apiRoutes.use('/category', categoryRouter)
-        apiRoutes.use('/product', productRouter)
+        apiRoutes.use('/model', modelRouter)
+        apiRoutes.use('/plane', planeRouter)
+        apiRoutes.use('/technician', technicianRouter)
+        apiRoutes.use('/test', testRouter)
     }
 
 }

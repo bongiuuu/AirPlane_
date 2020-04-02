@@ -8,55 +8,31 @@ class CartItemSchema {
                 primaryKey: true,
                 autoIncrement: true
             },
-            cartId: {
+            registrationNo: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
-                field: 'cart_id'
-            },
-            productId: {
-                allowNull: false,
-                type: DataTypes.INTEGER,
-                field: 'product_id'
-            },
-            nameVn: {
                 type: DataTypes.STRING,
+                field: 'registration_no'
+            },
+            faaNo: {
                 allowNull: false,
-                field: 'product_name_vn'
-            },
-            nameEn: {
                 type: DataTypes.STRING,
-                allowNull: false,
-                field: 'product_name_en'
+                field: 'faa_no'
             },
-            priceUnit: {
-                type: DataTypes.STRING,
-                field: 'price_unit'
-            },
-            quatity: {
-                allowNull: true,
-                defaultValue: 0,
+            days: {
+                defaultValue: 1,
                 type: DataTypes.INTEGER,
-                field: 'quatity'
-            },
-            totalPrice: {
+                field: 'days'
+            }, 
+            hours: {
+                defaultValue: 1,
                 type: DataTypes.INTEGER,
-                field: 'total_price'
-            },
+                field: 'hours'
+            }, 
             isDeleted: {
                 type: DataTypes.INTEGER(1),
                 allowNull: true,
                 defaultValue: 0
-            },
-            priority: {
-                defaultValue: 1,
-                type: DataTypes.INTEGER,
-                field: 'priority'
-            },
-            createdDate: {
-                defaultValue : new Date(),
-                type: DataTypes.DATE,
-                field: 'created_date'
-            },
+            }
         };
     }
 }

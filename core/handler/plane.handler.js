@@ -72,16 +72,36 @@ class CategoryHandler {
   async add(req) {
 
     if (Object.keys(req.body).length === 0) {
-      return "Body can not be Empty"
+      throw new Error("Body can not be Empty")
     }
 
-    const category = req.body
+    const body = req.body
+
+    if(!body.registrationNo) {
+      throw new Error("registrationNo can not be null")
+    }
+
+    if(!body.modelNo) {
+      throw new Error("modelNo can not be null")
+    }
  
     let t = await db.sequelize.transaction()
     try {
-      let categoryDB = await db.category.create(category,{transaction : t})
+
+      let checkModelNo = await db.model.findOne({ where : { modelNo : body.modelNo }}) 
+      if(!checkModelNo) {
+        throw new Error("Model not exist")
+      }
+
+      let checkPlane = await db.plane.findOne({ where : { registrationNo : body.registrationNo }}) 
+      if(checkPlane) {
+        throw new Error("Plan exist")
+      }
+
+      let plane = await db.plane.create(body,{ transaction : t })
+
       t.commit()
-      return categoryDB
+      return body
     } catch (error) {
       t.rollback()
       console.log(error)

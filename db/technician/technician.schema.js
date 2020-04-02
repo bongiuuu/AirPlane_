@@ -8,18 +8,23 @@ class BannerSchema {
                 primaryKey: true,
                 autoIncrement: true
             },
-            alt: {
+            name: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                field: 'alt'
+                field: 'name'
             },
-            slugVn: {
+            phone: {
                 type: DataTypes.STRING,
-                field: 'slug_vn'
+                field: 'phone'
             },
-            slugEn: {
+            address: {
                 type: DataTypes.STRING,
-                field: 'slug_en'
+                field: 'address'
+            },
+            salary: {
+                defaultValue: 1,
+                type: DataTypes.INTEGER,
+                field: 'salary'
             },
             priority: {
                 defaultValue: 1,

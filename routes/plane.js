@@ -1,4 +1,4 @@
-const categoryHandler = require('../core/handler/category.handler');
+const categoryHandler = require('../core/handler/plane.handler');
 const cResponse = require('../response/response');
 var express = require('express')
 var router = express.Router()

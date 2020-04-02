@@ -1,4 +1,4 @@
-const carsHandler = require('../core/handler/cars.handler');
+const handler = require('../core/handler/model.handler');
 const cResponse = require('../response/response');
 var express = require('express')
 var router = express.Router()
@@ -8,7 +8,7 @@ class Cars {
     carsRoutes() {
         router.route('/listAll').get((req, res, next) => {
             let query = req.query
-            return carsHandler.listAll(query).then((cars) => {
+            return handler.listAll(query).then((cars) => {
                 cResponse.ok(res, cars)
             }).catch((error) => {
                 cResponse.fail(res, error.message)
@@ -17,7 +17,16 @@ class Cars {
 
         router.route('/').post((req, res, next) => {
             let query = req.query
-            return carsHandler.listAll(query).then((cars) => {
+            return handler.add(req).then((cars) => {
+                cResponse.ok(res, cars)
+            }).catch((error) => {
+                cResponse.fail(res, error.message)
+            })
+        });
+
+        router.route('/').get((req, res, next) => {
+            let query = req.query
+            return handler.listAll(query).then((cars) => {
                 cResponse.ok(res, cars)
             }).catch((error) => {
                 cResponse.fail(res, error.message)
